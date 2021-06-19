@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
+
 import { Cocktail } from "../types";
-import { urlForImage } from "../util";
+import CocktailImage from "./CocktailImage";
 import { FaRecordVinyl, FaBookOpen } from "react-icons/fa";
 
 interface Props {
@@ -18,17 +18,11 @@ export const CocktailCards = ({ cocktails }: Props) => {
         <li key={cocktail.name} className="my-6 mx-8 flex-initial">
           <Link href={`/cocktails/${cocktail.slug.current}`}>
             <a>
-              <Image
-                className="hover:opacity-90"
-                src={
-                  urlForImage(cocktail.mainImage)
-                    .width(imgWidth)
-                    .height(imgHeight)
-                    .url() || ""
-                }
-                alt={`Picture of ${cocktail.name}`}
-                width={imgWidth}
-                height={imgHeight}
+              <CocktailImage
+                highlightOnHover={true}
+                width={400}
+                height={200}
+                cocktail={cocktail}
               />
             </a>
           </Link>

@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <main className="px-5 lg:px-20 xl:px-40">
         <Component {...pageProps} />
       </main>
-      <footer className="text-center p-5">
+      <footer className="text-center p-10 mt-10 bg-gray-100 text-gray-500 border-t">
         Cocktail Rock &copy;{new Date().getFullYear()}
       </footer>
     </>

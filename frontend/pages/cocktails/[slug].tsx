@@ -1,7 +1,9 @@
 import client from "../../client";
+import CocktailImage from "../../components/CocktailImage";
 import { Cocktail } from "../../types";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
+const BlockContent = require("@sanity/block-content-to-react");
 
 const cocktailsQuery = `*[_type == "cocktail"] { slug }`;
 const singleCocktailQuery = `*[_type == "cocktail" && slug.current == $slug][0]`;
@@ -19,8 +21,35 @@ export default function CocktailPage({ cocktail }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <article>
-        <h1>{cocktail.name}</h1>
+      <article className="py-6 lg:flex text-center lg:text-left">
+        <div className="lg:hidden flex-grow">
+          <CocktailImage width={500} height={500} cocktail={cocktail} />
+        </div>
+        <div className="lg:flex-auto lg:pr-10 mt-5 lg:mt-0">
+          <h2 className="text-3xl font-extralight">{cocktail.name}</h2>
+          <p className="text-gray-500 font-light align-top">
+            <span className="inline-block p-1">
+              Inspired by the album <strong>{cocktail.album.title}</strong>,
+              recorded in {cocktail.album.releaseYear} by{" "}
+              {cocktail.album.artist}
+            </span>
+          </p>
+          <BlockContent
+            blocks={cocktail.ingredients}
+            className="blockContent py-2"
+          />
+          <p className="italic">Shake with ice</p>
+          <h2 className="mt-6 text-3xl font-extralight">About the Drink</h2>
+          <BlockContent blocks={cocktail.method} className="blockContent" />
+          <h2 className="mt-10 text-3xl font-extralight">About the Album</h2>
+          <q className="font-extralight italic text-gray-500 ">
+            {cocktail.album.choiceLyric}
+          </q>
+          <BlockContent blocks={cocktail.method} className="blockContent" />
+        </div>
+        <div className="hidden lg:block flex-none">
+          <CocktailImage width={500} height={500} cocktail={cocktail} />
+        </div>
       </article>
     </div>
   );
