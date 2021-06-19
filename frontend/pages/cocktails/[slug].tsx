@@ -12,7 +12,7 @@ interface Props {
 
 export default function CocktailPage({ cocktail }: Props) {
   return (
-    <>
+    <div>
       <Head>
         <title>{cocktail.name} | Cocktail Rock</title>
         <meta name="description" content="Cocktail Rock" />
@@ -21,9 +21,8 @@ export default function CocktailPage({ cocktail }: Props) {
 
       <article>
         <h1>{cocktail.name}</h1>
-        <p>{cocktail.strapline}</p>
       </article>
-    </>
+    </div>
   );
 }
 

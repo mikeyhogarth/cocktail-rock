@@ -7,7 +7,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Header />
 
-      <main className="sm:px-5 lg:px-40 text-center ">
+      <main className="px-5 lg:px-20 xl:px-40">
         <Component {...pageProps} />
       </main>
       <footer className="text-center p-5">
