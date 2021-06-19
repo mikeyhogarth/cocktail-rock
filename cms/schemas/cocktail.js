@@ -18,11 +18,6 @@ const cocktail = {
       },
     },
     {
-      name: "strapline",
-      title: "Strapline",
-      type: "string",
-    },
-    {
       name: "album",
       title: "Album",
       type: "album",

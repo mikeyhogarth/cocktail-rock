@@ -16,9 +16,14 @@ const album = {
     {
       name: "releaseYear",
       title: "Release Year",
-      type: "string",
+      type: "number",
     },
     {
+      name: "choiceLyric",
+      title: "Choice Lyric",
+      type: "string",
+    },
+     {
       name: "recordedAt",
       title: "Recorded At",
       type: "string",

@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Link from "next/link";
 import client from "../client";
 import { Cocktail } from "../types";
 import { GetStaticProps } from "next";
-const cocktailsQuery = `*[_type == "cocktail"] { name, slug }[0...50]`;
+import { CocktailCards } from "../components/CocktailCards";
+const cocktailsQuery = `*[_type == "cocktail"] { name, mainImage, slug, album }[0...50]`;
 
 interface Props {
   cocktails: Cocktail[];
@@ -17,16 +17,7 @@ export default function Home({ cocktails }: Props) {
         <meta name="description" content="Cocktail Rock" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <ul>
-        {cocktails.map((cocktail) => (
-          <li key={cocktail.name}>
-            <Link href={`/cocktails/${cocktail.slug.current}`}>
-              <a>{cocktail.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <CocktailCards cocktails={cocktails} />
     </div>
   );
 }
