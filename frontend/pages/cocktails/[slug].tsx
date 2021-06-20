@@ -27,11 +27,11 @@ export default function CocktailPage({ cocktail }: Props) {
         </div>
         <div className="lg:flex-auto lg:pr-10 mt-5 lg:mt-0">
           <h2 className="text-3xl font-extralight">{cocktail.name}</h2>
-          <p className="text-gray-500 font-light align-top">
-            <span className="inline-block p-1">
+          <p className="text-gray-500 font-light align-top pb-2">
+            <span className="inline-block">
               Inspired by the album <strong>{cocktail.album.title}</strong>,
               recorded in {cocktail.album.releaseYear} by{" "}
-              {cocktail.album.artist}
+              <strong>{cocktail.album.artist}</strong>
             </span>
           </p>
           <BlockContent
@@ -40,12 +40,15 @@ export default function CocktailPage({ cocktail }: Props) {
           />
           <p className="italic">Shake with ice</p>
           <h2 className="mt-6 text-3xl font-extralight">About the Drink</h2>
-          <BlockContent blocks={cocktail.method} className="blockContent" />
+          <BlockContent blocks={cocktail.detail} className="blockContent" />
           <h2 className="mt-10 text-3xl font-extralight">About the Album</h2>
-          <q className="font-extralight italic text-gray-500 ">
+          <q className="italic text-gray-600 font-light">
             {cocktail.album.choiceLyric}
           </q>
-          <BlockContent blocks={cocktail.method} className="blockContent" />
+          <BlockContent
+            blocks={cocktail.album.detail}
+            className="blockContent"
+          />
         </div>
         <div className="hidden lg:block flex-none">
           <CocktailImage width={500} height={500} cocktail={cocktail} />

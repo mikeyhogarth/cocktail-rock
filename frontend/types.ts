@@ -11,6 +11,7 @@ export interface Cocktail {
   ingredients: string;
   method: string;
   album: Album;
+  detail: string;
 }
 
 export interface Album {

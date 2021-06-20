@@ -6,7 +6,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Header />
-
       <main className="px-5 lg:px-20 xl:px-40">
         <Component {...pageProps} />
       </main>

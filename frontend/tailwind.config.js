@@ -12,6 +12,10 @@ module.exports = {
       black: colors.black,
       white: colors.white,
     },
+    fontFamily: {
+      sans: ["Lato", "ui-sans-serif", "system-ui"],
+      serif: ["Playfair Display", "ui-serif", "Georgia"],
+    },
   },
   variants: {
     extend: {},
