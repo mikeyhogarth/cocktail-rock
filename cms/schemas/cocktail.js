@@ -40,6 +40,12 @@ const cocktail = {
       title: "Method",
       type: "blockContent",
     },
+    {
+      name: "detail",
+      title: "Detail",
+      type: "blockContent",
+    },
+
   ],
 };
 
