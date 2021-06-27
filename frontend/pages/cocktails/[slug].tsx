@@ -1,12 +1,9 @@
-import client from "../../client";
 import CocktailImage from "../../components/CocktailImage";
 import { Cocktail } from "../../types";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
+import { allSlugs, getCocktail } from "../../services/contentService";
 const BlockContent = require("@sanity/block-content-to-react");
-
-const cocktailsQuery = `*[_type == "cocktail"] { slug }`;
-const singleCocktailQuery = `*[_type == "cocktail" && slug.current == $slug][0]`;
 
 interface Props {
   cocktail: Cocktail;
@@ -58,21 +55,18 @@ export default function CocktailPage({ cocktail }: Props) {
   );
 }
 
+// This function gets called at build time.
 export const getStaticPaths: GetStaticPaths = async () => {
-  const cocktails: Cocktail[] = await client.fetch(cocktailsQuery);
-
-  const paths = cocktails.map((cocktail) => ({
-    params: { slug: cocktail.slug.current },
+  const slugs = await allSlugs();
+  const paths = slugs.map((slug) => ({
+    params: { slug },
   }));
 
   return { paths, fallback: false };
 };
 
-// This function gets called at build time on server-side.
+// This function gets called at build time.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const cocktail = await client.fetch(singleCocktailQuery, {
-    slug: params?.slug || "",
-  });
-
+  const cocktail = await getCocktail(params?.slug?.toString() || "");
   return { props: { cocktail } };
 };
